@@ -78,7 +78,15 @@ public class IO {
      * @param data data to send
      */
     public void send(String data) {
-        io.sendData(data.replaceAll("\n", System.lineSeparator()));
+        String current;
+
+        if (data.contains("\n")) {
+            current = "\n";
+        } else if (data.contains("\r")) {
+            current = "\r";
+        } else current = "\r\n";
+
+        io.sendData(data.replaceAll(current, System.lineSeparator()));
     }
 
     /**
