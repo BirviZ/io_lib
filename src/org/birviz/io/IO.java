@@ -47,7 +47,7 @@ public class IO {
      */
     public static void writeln(Object content) {
         write(content);
-        write("\n");
+        write(System.lineSeparator());
     }
 
     /**
@@ -78,7 +78,15 @@ public class IO {
      * @param data data to send
      */
     public void send(String data) {
-        io.sendData(data);
+        String current;
+
+        if (data.contains("\n")) {
+            current = "\n";
+        } else if (data.contains("\r")) {
+            current = "\r";
+        } else current = "\r\n";
+
+        io.sendData(data.replaceAll(current, System.lineSeparator()));
     }
 
     /**
