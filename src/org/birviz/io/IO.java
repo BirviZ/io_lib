@@ -47,7 +47,7 @@ public class IO {
      */
     public static void writeln(Object content) {
         write(content);
-        write("\n");
+        write(System.lineSeparator());
     }
 
     /**
@@ -78,7 +78,7 @@ public class IO {
      * @param data data to send
      */
     public void send(String data) {
-        io.sendData(data);
+        io.sendData(data.replaceAll("\n", System.lineSeparator()));
     }
 
     /**
